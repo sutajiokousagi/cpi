@@ -1,0 +1,9 @@
+<?xml version='1.0'?>
+<cpi version='1.0'>
+    <query_list>
+        <query type="pidx" key_id="0"></query>
+        <query type="pkey" key_id="0"></query>
+        <query type="ckey"></query>
+        <query type="chal" key_id="0" rand_data="afd948efe78ce386f740d9fddcbf5247"></query>
+    </query_list>
+</cpi>

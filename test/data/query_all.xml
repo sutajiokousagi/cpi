@@ -1,0 +1,16 @@
+<?xml version='1.0'?>
+<cpi version='1.0'>
+    <query_list>
+        <query type="pidx" key_id="0"></query>
+        <query type="pidx" key_id="1024"></query>
+        <query type="pkey" key_id="0"></query>
+        <!--<query type="pkey" key_id="1024"></query>-->
+        <query type="vers"></query>
+        <query type="time"></query>
+        <query type="ckey"></query>
+        <query type="snum"></query>
+        <query type="hwvr"></query>
+        <query type="chal" key_id="0" rand_data="0102030405060708090A0B0C0D0E0F10"></query>
+    </query_list>
+</cpi>
+

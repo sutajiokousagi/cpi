@@ -1,0 +1,8 @@
+<?xml version='1.0'?>
+<cpi version='1.0'>
+    <query_list>
+        <query type="pidx" key_id="0"></query>
+        <query type="pidx" key_id="1024"></query>
+    </query_list>
+</cpi>
+

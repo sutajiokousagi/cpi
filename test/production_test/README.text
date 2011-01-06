@@ -1,0 +1,10 @@
+This directory contains scripts used for testing the crypto
+processor. Most of the scripts require perl. 
+
+The following perl modules are also required:
+Crypt-OpenSSL-Bignum
+Crypt-OpenSSL-RSA
+Crypt-OpenSSL-Random
+Digest-SHA1
+
+

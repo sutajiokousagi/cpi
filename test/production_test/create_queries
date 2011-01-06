@@ -1,0 +1,13 @@
+#!/bin/sh
+
+
+
+index=0
+
+while [ $index -lt 24 ]; do
+	RAND=$(perl -e 'open($fd, "<", "/dev/random");' -e 'read($fd, $data, 16);' -e 'print unpack("H32", $data);')
+	echo $RAND
+	sed -e "s/key_id=\"[0-9]*\"/key_id=\"$index\"/" -e "s/rand_data=\"[^\"]*\"/rand_data=\"$RAND\"/"  < query.xml > query$index.xml
+	index=$(expr $index + 1)
+done
+

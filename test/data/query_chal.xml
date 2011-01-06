@@ -1,0 +1,7 @@
+<?xml version='1.0'?>
+<cpi version='1.0'>
+    <query_list>
+        <query type="chal" key_id="0" rand_data="0102030405060708090A0B0C0D0E0F10"></query>
+    </query_list>
+</cpi>
+

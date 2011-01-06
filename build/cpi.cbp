@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="cpi" />
+		<Option makefile_is_custom="1" />
+		<Option pch_mode="2" />
+		<Option compiler="msvc8" />
+		<MakeCommands>
+			<Build command='plink linux &quot;./plrun ironforge/cpi make -C build exports copy CNPLATFORM=stormwind&quot;' />
+			<CompileFile command="$make -f $makefile $file" />
+			<Clean command='plink linux &quot;./plrun ironforge/cpi make -C build clean CNPLATFORM=stormwind&quot;' />
+			<DistClean command="$make -f $makefile distclean$target" />
+		</MakeCommands>
+		<Build>
+			<Target title="ironforge">
+				<Option output="cpi.exe" prefix_auto="1" extension_auto="0" />
+				<Option type="0" />
+				<Option compiler="msvc8" />
+				<MakeCommands>
+					<Build command='plink linux &quot;./plrun ironforge/cpi make -C build exports copy CNPLATFORM=ironforge&quot;' />
+					<CompileFile command="$make -f $makefile $file" />
+					<Clean command='plink linux &quot;./plrun ironforge/cpi make -C build clean CNPLATFORM=ironforge&quot;' />
+					<DistClean command="$make -f $makefile distclean$target" />
+				</MakeCommands>
+			</Target>
+			<Target title="stormwind">
+				<Option output="cpi.exe" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="msvc8" />
+				<MakeCommands>
+					<Build command='plink linux &quot;./plrun ironforge/cpi make -C build exports copy CNPLATFORM=stormwind&quot;' />
+					<CompileFile command="$make -f $makefile $file" />
+					<Clean command='plink linux &quot;./plrun ironforge/cpi make -C build clean CNPLATFORM=stormwind&quot;' />
+					<DistClean command="$make -f $makefile distclean$target" />
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="/W3" />
+		</Compiler>
+		<Unit filename="Makefile" />
+		<Unit filename="install.sh" />
+		<Unit filename="..\include\cp_interface.h" />
+		<Unit filename="..\src\cmdline\main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\src\cp_interface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\src\cp_return_codes.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\src\cp_utility.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\src\cp_utility.h" />
+		<Unit filename="..\src\cp_xml_interface.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\test\data\keyfile" />
+		<Unit filename="..\test\data\query_all.xml" />
+		<Unit filename="..\test\data\query_chal.xml" />
+		<Unit filename="..\test\data\query_ckey.xml" />
+		<Unit filename="..\test\data\query_hwvr.xml" />
+		<Unit filename="..\test\data\query_pidx.xml" />
+		<Unit filename="..\test\data\query_pkey.xml" />
+		<Unit filename="..\test\data\query_snum.xml" />
+		<Unit filename="..\test\data\query_time.xml" />
+		<Unit filename="..\test\data\query_vers.xml" />
+		<Unit filename="..\test\data\response_all.xml" />
+		<Unit filename="..\test\data\response_chal.xml" />
+		<Unit filename="..\test\data\response_ckey.xml" />
+		<Unit filename="..\test\data\response_hwvr.xml" />
+		<Unit filename="..\test\data\response_pidx.xml" />
+		<Unit filename="..\test\data\response_pkey.xml" />
+		<Unit filename="..\test\data\response_snum.xml" />
+		<Unit filename="..\test\data\response_time.xml" />
+		<Unit filename="..\test\data\response_vers.xml" />
+		<Unit filename="..\test\src\main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="..\test\src\main.h" />
+		<Extensions>
+			<code_completion />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

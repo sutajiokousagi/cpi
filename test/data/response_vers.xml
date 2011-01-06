@@ -1,0 +1,7 @@
+<?xml version='1.0'?>
+<cpi version='1.0'>
+  <response_list>
+    <response type="vers" result="success">4.2.0</response>
+  </response_list>
+</cpi>
+

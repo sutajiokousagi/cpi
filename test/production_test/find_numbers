@@ -1,0 +1,102 @@
+#!/usr/bin/perl
+#
+# utility for finding large numbers (numbers using pkcs standard)
+# inside a binary file. 
+# large numbers are stored as bit_count bits 
+#     bit_count is 16 bits
+#     bits is a byte string containing the number of bits specified.
+#     length of bits is (bit_count + 7) / 8
+#
+# This produces many false positives. The number is at byte 9.
+# Start with this and skip to the next start.
+#
+# If numbers are passed as args, numbers in the input at those locations
+# are written to files in the current dir.
+# 
+# usage:
+#  $0 [OFFSET_OF_NUM_TO_SAVE]... < FILE_TO_SEARCH
+#
+
+use strict;
+use warnings;
+
+my $data;
+
+{
+	local $/ = undef;
+	$data = <STDIN>;
+}
+
+my @chars = split('', $data);
+my $data_size = scalar(@chars);
+my $start = 0;
+my $skip = 0;
+
+sub output_offsets()
+{
+	for(my $index = $start; $index < (scalar(@chars) - 1); ++$index)
+	{
+		my $v1 = ord($chars[$index]);
+		my $v2 = ord($chars[$index + 1]);
+		my $size = ($v1 << 8) + $v2;
+		$size = int(($size + 7) / 8);
+		if( $size <= ($data_size - $index))
+		{
+			my $end = $index + $size +2;
+			my $remain = $data_size - $end;
+			
+			print "index=$index size=$size  end=$end remaining=$remain\n";
+			if( $skip )
+			{
+				$index = $end - 1; # this will be incremented
+			}
+		}
+	}
+}
+
+
+while( @ARGV && $ARGV[0] =~ /^--/)
+{
+	my $arg = shift(@ARGV);
+	if( $arg eq '--skip')
+	{
+		$skip = 1;
+	}
+	elsif( $arg =~ /^--start=(\d+)$/)
+	{
+		$start = $1;
+	}
+	else
+	{
+		print STDERR "Error: bad arg: $arg\n";
+		exit 1;
+	}
+}
+
+if(scalar(@ARGV) == 0)
+{
+	output_offsets();
+	exit;
+}
+
+while(@ARGV)
+{
+	my $arg = shift(@ARGV);
+	
+	if( $arg =~ /^\d+$/)
+	{
+		my $fd = undef;
+		open($fd, ">", "$arg.key") or die "open failed: $arg.key";
+		my $size = (ord($chars[$arg]) << 8) + ord($chars[$arg + 1]);
+		$size = int(($size + 7) / 8);
+		print "offset=$arg size=$size\n"; 
+		for(my $index = $arg + 2; $index < $arg+2+$size; $index += 1)
+		{
+			print $fd $chars[$index];
+		}
+		close($fd);
+		$fd = undef;
+	} 
+}
+
+
